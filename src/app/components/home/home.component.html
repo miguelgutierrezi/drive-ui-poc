@@ -1,1 +1,29 @@
-<p>home works!</p>
+<div class="container text-center mt-4">
+  <h1>Búsqueda de archivos drive</h1>
+
+  <form class="mb-3">
+    <div class="mb-3">
+      <label for="folder_name" class="form-label">Nombre de la carpeta</label>
+      <input type="text" class="form-control" id="folder_name" placeholder="Ingresa el nombre de la carpeta">
+    </div>
+    <div class="mb-3">
+      <label for="fileInput" class="form-label">Archivo con códigos a buscar</label>
+      <input type="file" class="form-control" id="fileInput">
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
+
+  <hr/>
+
+  <h2 class="mt-4">Códigos procesados</h2>
+  <table class="table mt-4">
+    <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nombre archivo</th>
+      <th>Ubicación</th>
+    </tr>
+    </thead>
+  </table>
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+</div>
