@@ -1,14 +1,23 @@
 <div class="container text-center mt-4">
   <h1>Búsqueda de archivos drive</h1>
 
-  <form class="mb-3">
+  <form [formGroup]="queryForm" (ngSubmit)="onSubmit()" class="mb-3">
     <div class="mb-3">
       <label for="folder_name" class="form-label">Nombre de la carpeta</label>
-      <input type="text" class="form-control" id="folder_name" placeholder="Ingresa el nombre de la carpeta">
+      <input type="text" class="form-control" id="folder_name" placeholder="Ingresa el nombre de la carpeta"
+             formControlName="folderName">
+      <div *ngIf="queryForm.get('folderName')?.hasError('required') && queryForm.get('folderName')?.touched"
+           class="text-danger">
+        El nombre de la carpeta es obligatorio.
+      </div>
     </div>
     <div class="mb-3">
       <label for="fileInput" class="form-label">Archivo con códigos a buscar</label>
-      <input type="file" class="form-control" id="fileInput">
+      <input type="file" class="form-control" id="fileInput" (change)="onFileSelected($event)" formControlName="file">
+      <div *ngIf="queryForm.get('file')?.hasError('required') && queryForm.get('file')?.touched && base64File === ''"
+           class="text-danger">
+        Debes seleccionar un archivo.
+      </div>
     </div>
     <button type="submit" class="btn btn-primary">Buscar</button>
   </form>
@@ -19,11 +28,19 @@
   <table class="table mt-4">
     <thead>
     <tr>
-      <th>Código</th>
-      <th>Nombre archivo</th>
-      <th>Ubicación</th>
+      <th scope="col">#</th>
+      <th scope="col">Código</th>
+      <th scope="col">Nombre archivo</th>
+      <th scope="col">Ubicación</th>
     </tr>
     </thead>
+    <tbody>
+    <tr *ngFor="let element of elements; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{element.codigo}}</td>
+      <td>{{element.nombre}}</td>
+      <td>{{element.ubicacion}}</td>
+    </tbody>
   </table>
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 </div>
