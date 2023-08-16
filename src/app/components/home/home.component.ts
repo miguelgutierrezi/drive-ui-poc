@@ -55,7 +55,6 @@ export class HomeComponent implements OnInit {
       this.driveService.processCode(code, this.queryForm.get('folderName')?.value).subscribe({
         next: res => {
           this.elements.push(res);
-          console.log(this.elements);
         }, error: error => {
           console.log(error);
         }

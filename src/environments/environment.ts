@@ -1,5 +1,5 @@
 export const environment = {
-  apiUrl: '',
+  apiUrl: 'https://drive-api-poc-66dd0d4ae550.herokuapp.com/',
   firebaseConfig: {
     apiKey: "AIzaSyA2OgZUnAjvbPxL7sfm4qa8V8uBhwZDlZM",
     authDomain: "drive-search-e985d.firebaseapp.com",
