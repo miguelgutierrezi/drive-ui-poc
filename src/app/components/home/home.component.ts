@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
         }
       });
     }
+    this.isLoading = false;
   }
 
   private convertFileToBase64(file: File): void {
